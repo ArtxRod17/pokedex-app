@@ -11,22 +11,27 @@ async function getData(pokemon) {
 
 const PokemonInfo = async ({ params: { name } }) => {
   const pokeInfo = await getData(name);
-  let pokeType = [];
+  let pokeType: string[] = [];
   pokeInfo.types.map((typeName) => {
     let typeValue = typeName.type.name;
     pokeType.push(typeValue);
+    console.log(pokeType);
   });
   return (
-    <div>
-      <h2>{name}</h2>
-      <h2>{pokeInfo.id}</h2>
-      <h2>{pokeType}</h2>
+    <div className=" bg-red-500 border-8 p-4">
+      <div className=" flex flex-row px-2">
+        <h2 className="font-bold text-5xl mr-4">{pokeInfo.id}</h2>
+        <h2 className=" font-bold text-4xl">{name}</h2>
+      </div>
       <img
         src={pokeInfo.sprites.front_default}
-        width={200}
-        height={200}
+        width={400}
+        height={400}
         alt={`Picture of ${name}`}
       ></img>
+      {/* SWITCH STATEMENT FOR COLOR OF TYPE */}
+      <div></div>
+      <h1 className=" text-xl">{pokeType}</h1>
     </div>
   );
 };
